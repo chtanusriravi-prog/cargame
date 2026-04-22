@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'VT323', monospace;
+  --font-mono: 'VT323', monospace;
+}
+
+@keyframes glitch {
+  0%, 14%, 100% { transform: translate(0) }
+  2%, 6%, 10% { transform: translate(-3px, 2px) }
+  4%, 8%, 12% { transform: translate(3px, -2px) }
+}
+
+@keyframes tear {
+  0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translateX(0); }
+  10% { clip-path: polygon(0 15%, 100% 15%, 100% 25%, 0 25%); transform: translateX(-10px); }
+  11% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translateX(0); }
+  50% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); transform: translateX(10px); }
+  51% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translateX(0); }
+}
+
+@keyframes staticbg {
+  0% { background-position: 0 0; }
+  25% { background-position: 10px -10px; }
+  50% { background-position: -20px 20px; }
+  75% { background-position: 15px 15px; }
+  100% { background-position: 0 0; }
+}
+
+.glitch {
+  animation: glitch 2.5s linear infinite;
+  text-shadow: 4px 0 #ff00ff, -4px 0 #00ffff;
+}
+
+.tear {
+  animation: tear 4s infinite reverse;
+}
+
+.static-bg {
+  background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');
+  animation: staticbg 0.2s steps(4) infinite;
+  opacity: 0.15;
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+}
